@@ -16,7 +16,7 @@ public class ContaPoupanca extends Conta {
         this.taxaRendimento = taxaRendimento;
     }
 
-    public void simularOperacao() {
+    public double simularOperacao(int meses) {
         /*
          * esse método deve receber como parâmetro um número inteiro, representando
          * a quantidade de meses desejados para simular o rendimento da conta poupança.
@@ -24,5 +24,10 @@ public class ContaPoupanca extends Conta {
          * taxaRendimento da conta. O rendimento ocorre a cada mês a partir da seguinte 
          * fórmula: saldo + (taxaRendimento * saldo)
          */
+        double meuSaudo = getSaudo();
+        for(int i = 0; i < meses; i++){
+            meuSaudo = meuSaudo + (taxaRendimento * meuSaudo);
+        }
+        return meuSaudo;
     }
 }

@@ -48,14 +48,14 @@ public class Conta {
     public void deposito(double quantia) {
         // recebe uma quantia de dinheiro e salva nosaldo da conta
         if (quantia > 0) {
-            this.saldo += quantia;
+            this.saldo = this.saldo + quantia;
         }
     }
 
     public void saque(double quantia) {
         // remove uma quantia de dinheiro e retira do saldo da conta
         if (quantia > 0 && this.saldo >= quantia) {
-            this.saldo -= quantia;
+            this.saldo = this.saldo - quantia;
         }
     }
 
@@ -66,7 +66,7 @@ public class Conta {
          * Garanta que exista saldo suficiente para isso
          */
         if (quantia > 0 && this.saldo >= quantia) {
-            this.saldo -= quantia;
+            this.saldo = this.saldo - quantia;
             contaTransferencia.deposito(quantia);
         } else {
             System.out.println("saldo insufiente");
