@@ -90,8 +90,8 @@ public class Conta {
      * Cliente cliente2 = new Cliente("joao", "palestras", "engenheiro");
      * cliente2.exibirAtributos();
      * 
-     * Conta conta1 = new Conta(12, 90, 1000.0, cliente1);
-     * Conta conta2 = new Conta(34, 01, 500.0, cliente2);
+     * Conta conta1 = new Conta(12, 90, 1000, cliente1);
+     * Conta conta2 = new Conta(34, 01, 500, cliente2);
      * 
      * conta1.exibirSaldo();
      * conta2.exibirSaldo();
