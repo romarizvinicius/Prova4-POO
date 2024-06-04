@@ -24,11 +24,11 @@ public class ContaPoupanca extends Conta {
          * taxaRendimento da conta. O rendimento ocorre a cada mês a partir da seguinte
          * fórmula: saldo + (taxaRendimento * saldo)
          */
-        double meuSaudo = getSaudo();
+        double meuSaldo = getSaudo();
         for (int i = 0; i < mes; i++) {
-            meuSaudo = meuSaudo + (taxaRendimento * meuSaudo);
+            meuSaldo = meuSaldo + (taxaRendimento * meuSaldo);
         }
-        return meuSaudo;
+        return meuSaldo;
     }
     
     /*
@@ -39,8 +39,8 @@ public class ContaPoupanca extends Conta {
      * ContaPoupanca contaPoupanca = new ContaPoupanca(34, 01, 900, cliente2, 0.05);
      * int mes = 12;
      * 
-     * double meuSaudo = contaPoupanca.simularOperacao(mes);
-     * System.out.println("saldo final: " + meuSaudo);
+     * double meuSaldo = contaPoupanca.simularOperacao(mes);
+     * System.out.println("saldo final: " + meuSaldo);
      * }
      */
 }

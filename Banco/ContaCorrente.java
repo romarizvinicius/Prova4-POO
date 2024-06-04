@@ -24,22 +24,22 @@ public class ContaCorrente extends Conta {
          * da conta corrente. O
          * método retorna o saldo final após o decrescimento da taxaManutencao mensal
          */
-        double meuSaudo = getSaudo();
+        double meuSaldo = getSaudo();
         for (int i = 0; i < mes; i++) {
-            meuSaudo = meuSaudo - taxaManutancao;
+            meuSaldo = meuSaldo - taxaManutancao;
         }
-        return meuSaudo;
+        return meuSaldo;
     }
     /*
      * public static void main(String[] args) {
      * 
      * Cliente cliente2 = new Cliente("joao", "palestras", "engenheiro");
-     * ContaCorrente contaCorrente = new ContaCorrente(34, 01, 900, cliente2, 0.05);
+     * ContaCorrente contaCorrente = new ContaCorrente(34, 01, 900, cliente2, 50);
      * 
      * int mes = 12;
-     * double meuSaudo = contaCorrente.simularOperacao(mes);
+     * double meuSaldo = contaCorrente.simularOperacao(mes);
      * 
-     * System.out.println("saldo final: " + meuSaudo);
+     * System.out.println("saldo final: " + meuSaldo);
      * }
      */
 }
