@@ -41,59 +41,60 @@ public class TesteOperacoes {
          * tipo Cliente e adicioná-lo no atributo listaClientes.
          * 
          * Receba uma string: tipoConta por meio do método Scanner, que deve informar
-         * qual o tipo de conta que o usuário deseja criar (poupança ou corrente). 
+         * qual o tipo de conta que o usuário deseja criar (poupança ou corrente).
          * Crie um objeto de acordo com a classe especificada.
          * 
          * Para preencher o objeto, receba dois números inteiros (número da agência e
-         * conta) e um número flutuante: saldo, através do método Scanner. Adicione o objeto no
+         * conta) e um número flutuante: saldo, através do método Scanner. Adicione o
+         * objeto no
          * atributo listaContas.
          * 
          * Use o tratamento de exceções para evitar que o usuário informe números de
-         * agência e conta como string, bem como para evitar que ele insira 
+         * agência e conta como string, bem como para evitar que ele insira
          * o valor do saldo menor do que zero.
          */
         Scanner s = new Scanner(System.in);
 
-    try{
+        try {
 
-        System.out.println("digite o nome");
-        String nome = s.nextLine();
-        System.out.println("digite o endereço");
-        String endereco = s.nextLine();
-        System.out.println("digite a profissao");
-        String profissao = s.nextLine();
+            System.out.println("digite o nome");
+            String nome = s.nextLine();
+            System.out.println("digite o endereço");
+            String endereco = s.nextLine();
+            System.out.println("digite a profissao");
+            String profissao = s.nextLine();
 
-        Cliente Cliente = new Cliente(nome, endereco, profissao);
-        listaDeClientes.add(Cliente);
+            Cliente Cliente = new Cliente(nome, endereco, profissao);
+            listaDeClientes.add(Cliente);
 
-        System.out.println("digite o numero da agencia");
-        int numeroDaAgencia = s.nextInt();
-        System.out.println("digite o numero da conta");
-        int numeroDaConta = s.nextInt();
-        System.out.println("digite o saldo");
-        float saudo = s.nextFloat();
+            System.out.println("digite o numero da agencia");
+            int numeroDaAgencia = s.nextInt();
+            System.out.println("digite o numero da conta");
+            int numeroDaConta = s.nextInt();
+            System.out.println("digite o saldo");
+            float saudo = s.nextFloat();
 
-        if (saudo < 0) {
-            throw new IllegalArgumentException("PROBLEMA o saldo nao pode ser negativo");
+            if (saudo < 0) {
+                throw new IllegalArgumentException("ERRO o saldo nao pode ser negativo");
+            }
+
+            System.out.println("digite 1 para conta poupança ou 2 para conta corrente");
+            String pcConta = s.nextLine();
+
+            if (pcConta.equals("1")) {
+                ContaPoupanca contaPoupanca = new ContaPoupanca(numeroDaAgencia, numeroDaConta, saudo, Cliente, 0.05);
+                listaDeContas.add(contaPoupanca);
+            } else if (pcConta.equals("2")) {
+                ContaCorrente contaCorrente = new ContaCorrente(numeroDaAgencia, numeroDaConta, saudo, Cliente, 50);
+                listaDeContas.add(contaCorrente);
+            } else {
+                throw new IllegalArgumentException("ERRO conta invalida");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("ERRO numero da conta ou do banco invalido");
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERRO: " + e.getMessage());
         }
-
-        System.out.println("digite 1 para conta poupança ou 2 para conta corrente");
-        String pcConta = s.nextLine();
-
-        if (pcConta.equals("1")){
-            ContaPoupanca contaPoupanca = new ContaPoupanca(numeroDaAgencia, numeroDaConta, saudo, Cliente, 0.05);
-            listaDeContas.add(contaPoupanca);
-        }else if (pcConta.equals("2")){
-            ContaCorrente contaCorrente = new ContaCorrente(numeroDaAgencia, numeroDaConta, saudo, Cliente, 50);
-            listaDeContas.add(contaCorrente);
-        }else{
-            throw new IllegalArgumentException("PROBLEMA conta invalida");
         }
-        
-    } catch (NumberFormatException e) {
-        System.out.println("Erro:");
-    } catch (IllegalArgumentException e) {
-        System.out.println("Erro: " + e.getMessage());
-    }
-    }
 }
