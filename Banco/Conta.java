@@ -6,10 +6,10 @@ public class Conta {
     private double saldo;
     private Cliente cliente;
 
-    public Conta(int numeroDaAgencia, int numeroDaConta, double saudo, Cliente cliente) {
+    public Conta(int numeroDaAgencia, int numeroDaConta, double saldo, Cliente cliente) {
         this.numeroDaAgencia = numeroDaAgencia;
         this.numeroDaConta = numeroDaConta;
-        this.saldo = saudo;
+        this.saldo = saldo;
         this.cliente = cliente;
     }
 
@@ -29,11 +29,11 @@ public class Conta {
         this.numeroDaConta = numeroDaConta;
     }
 
-    public double getSaudo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaudo(double saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

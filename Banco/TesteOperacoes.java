@@ -68,11 +68,11 @@ public class TesteOperacoes {
             listaDeClientes.add(Cliente);
 
             System.out.println("digite o numero da agencia");
-            int numeroDaAgencia = s.nextInt();
+            int numeroDaAgencia = Integer.parseInt(s.nextLine());
             System.out.println("digite o numero da conta");
-            int numeroDaConta = s.nextInt();
+            int numeroDaConta = Integer.parseInt(s.nextLine());
             System.out.println("digite o saldo");
-            float saudo = s.nextFloat();
+            double saudo = Double.parseDouble(s.nextLine());
 
             if (saudo < 0) {
                 throw new IllegalArgumentException("ERRO o saldo nao pode ser negativo");
@@ -92,9 +92,36 @@ public class TesteOperacoes {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("ERRO numero da conta ou do banco invalido");
+            System.out.println("ERRO numero da conta ou da agencia invalido");
         } catch (IllegalArgumentException e) {
             System.out.println("ERRO: " + e.getMessage());
         }
+        
+    }
+
+    public void realizarOperacoes(int numeroDaAgenciaEnviar, int numeroDaContaEnviar, int numeroDaAgenciaReceber, int numeroDaContaReceber, double quantia) {
+
+        Conta contaEnviar = null;
+        Conta contaReceber = null;
+
+        for (Conta conta : listaDeContas){
+            if (conta.getNumeroDaAgencia() == numeroDaAgenciaEnviar && conta.getNumeroDaConta() == numeroDaContaEnviar) {
+                contaEnviar = conta;
+                break;
+            }
         }
+
+        for (Conta conta : listaDeContas){
+            if (conta.getNumeroDaAgencia() == numeroDaAgenciaReceber && conta.getNumeroDaConta() == numeroDaContaReceber) {
+                contaReceber = conta;
+                break;
+            }
+        }
+
+        if (contaEnviar != null && contaReceber != null) {
+            contaEnviar.transferencia(contaReceber, quantia);
+        } else {
+            System.out.println("ERRO: Conta não encontrada");
+        }
+    }
 }

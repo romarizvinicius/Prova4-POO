@@ -3,8 +3,8 @@ package Banco;
 public class ContaPoupanca extends Conta {
     private double taxaRendimento = 0.05;
 
-    public ContaPoupanca(int numeroDaAgencia, int numeroDaConta, double saudo, Cliente cliente, double taxaRendimento) {
-        super(numeroDaAgencia, numeroDaConta, saudo, cliente);
+    public ContaPoupanca(int numeroDaAgencia, int numeroDaConta, double saldo, Cliente cliente, double taxaRendimento) {
+        super(numeroDaAgencia, numeroDaConta, saldo, cliente);
         this.taxaRendimento = taxaRendimento;
     }
 
@@ -24,7 +24,7 @@ public class ContaPoupanca extends Conta {
          * taxaRendimento da conta. O rendimento ocorre a cada mês a partir da seguinte
          * fórmula: saldo + (taxaRendimento * saldo)
          */
-        double meuSaldo = getSaudo();
+        double meuSaldo = getSaldo();
         for (int i = 0; i < mes; i++) {
             meuSaldo = meuSaldo + (taxaRendimento * meuSaldo);
         }

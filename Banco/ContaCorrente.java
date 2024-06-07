@@ -3,8 +3,8 @@ package Banco;
 public class ContaCorrente extends Conta {
     private double taxaManutancao = 50;
 
-    public ContaCorrente(int numeroDaAgencia, int numeroDaConta, double saudo, Cliente cliente, double taxaManutancao) {
-        super(numeroDaAgencia, numeroDaConta, saudo, cliente);
+    public ContaCorrente(int numeroDaAgencia, int numeroDaConta, double saldo, Cliente cliente, double taxaManutancao) {
+        super(numeroDaAgencia, numeroDaConta, saldo, cliente);
         this.taxaManutancao = taxaManutancao;
     }
 
@@ -24,7 +24,7 @@ public class ContaCorrente extends Conta {
          * da conta corrente. O
          * método retorna o saldo final após o decrescimento da taxaManutencao mensal
          */
-        double meuSaldo = getSaudo();
+        double meuSaldo = getSaldo();
         for (int i = 0; i < mes; i++) {
             meuSaldo = meuSaldo - taxaManutancao;
         }
