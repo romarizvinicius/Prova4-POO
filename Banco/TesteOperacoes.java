@@ -34,25 +34,7 @@ public class TesteOperacoes {
     }
 
     public void criarConta() {
-        /*
-         * Esse método deve receber as strings: nome, endereço e profissão do cliente
-         * por meio do
-         * método Scanner. Em seguida, essas informações devem instanciar um objeto do
-         * tipo Cliente e adicioná-lo no atributo listaClientes.
-         * 
-         * Receba uma string: tipoConta por meio do método Scanner, que deve informar
-         * qual o tipo de conta que o usuário deseja criar (poupança ou corrente).
-         * Crie um objeto de acordo com a classe especificada.
-         * 
-         * Para preencher o objeto, receba dois números inteiros (número da agência e
-         * conta) e um número flutuante: saldo, através do método Scanner. Adicione o
-         * objeto no
-         * atributo listaContas.
-         * 
-         * Use o tratamento de exceções para evitar que o usuário informe números de
-         * agência e conta como string, bem como para evitar que ele insira
-         * o valor do saldo menor do que zero.
-         */
+
         Scanner s = new Scanner(System.in);
 
         try {
@@ -96,23 +78,26 @@ public class TesteOperacoes {
         } catch (IllegalArgumentException e) {
             System.out.println("ERRO: " + e.getMessage());
         }
-        
+
     }
 
-    public void realizarOperacoes(int numeroDaAgenciaEnviar, int numeroDaContaEnviar, int numeroDaAgenciaReceber, int numeroDaContaReceber, double quantia) {
+    public void realizarOperacoes(int numeroDaAgenciaEnviar, int numeroDaContaEnviar, int numeroDaAgenciaReceber,
+            int numeroDaContaReceber, double quantia) {
 
         Conta contaEnviar = null;
         Conta contaReceber = null;
 
-        for (Conta conta : listaDeContas){
-            if (conta.getNumeroDaAgencia() == numeroDaAgenciaEnviar && conta.getNumeroDaConta() == numeroDaContaEnviar) {
+        for (Conta conta : listaDeContas) {
+            if (conta.getNumeroDaAgencia() == numeroDaAgenciaEnviar
+                    && conta.getNumeroDaConta() == numeroDaContaEnviar) {
                 contaEnviar = conta;
                 break;
             }
         }
 
-        for (Conta conta : listaDeContas){
-            if (conta.getNumeroDaAgencia() == numeroDaAgenciaReceber && conta.getNumeroDaConta() == numeroDaContaReceber) {
+        for (Conta conta : listaDeContas) {
+            if (conta.getNumeroDaAgencia() == numeroDaAgenciaReceber
+                    && conta.getNumeroDaConta() == numeroDaContaReceber) {
                 contaReceber = conta;
                 break;
             }
@@ -121,7 +106,75 @@ public class TesteOperacoes {
         if (contaEnviar != null && contaReceber != null) {
             contaEnviar.transferencia(contaReceber, quantia);
         } else {
-            System.out.println("ERRO: Conta não encontrada");
+            System.out.println("ERRO: conta nao encontrada");
+        }
+    }
+
+    public void exibirSaldo() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("digite o numero da agencia da conta pesquisada");
+        int agencia = Integer.parseInt(scanner.nextLine());
+        System.out.println("digite o numero da conta pesquisada");
+        int conta = Integer.parseInt(scanner.nextLine());
+
+        Conta contaPesquisada = null;
+
+        for (Conta c : listaDeContas) {
+            if (c.getNumeroDaAgencia() == agencia && c.getNumeroDaConta() == conta) {
+                contaPesquisada = c;
+                break;
+            }
+        }
+
+        if (contaPesquisada != null) {
+            System.out.println("digite o numero de meses para o saldo");
+            int meses = Integer.parseInt(scanner.nextLine());
+
+            double saldoSimulado = ((ContaPoupanca) contaPesquisada).simularOperacao(meses);
+            System.out.println("saldo simulado apos " + meses + " meses:" + saldoSimulado);
+        }
+    }
+
+    public void apresentarMenu() {
+        Scanner s = new Scanner(System.in);
+        while (true) {
+            System.out.println("Escolha uma operação:");
+            System.out.println("1. Criar Conta");
+            System.out.println("2. Realizar Operação");
+            System.out.println("3. Exibir Saldo");
+            System.out.println("4. Sair");
+
+            int escolha = Integer.parseInt(s.nextLine());
+            switch (escolha) {
+                case 1:
+                    criarConta();
+                    break;
+                case 2:
+                    System.out.println("digite o numero da agencia de envio:");
+                    int numeroDaAgenciaEnviar = Integer.parseInt(s.nextLine());
+                    System.out.println("digite o numero da conta de envio:");
+                    int numeroDaContaEnviar = Integer.parseInt(s.nextLine());
+                    System.out.println("digite o numero da agencia de recebimento:");
+                    int numeroDaAgenciaReceber = Integer.parseInt(s.nextLine());
+                    System.out.println("digite o numero da conta de recebimento:");
+                    int numeroDaContaReceber = Integer.parseInt(s.nextLine());
+                    System.out.println("digite a quantia a ser transferida:");
+                    double quantia = Double.parseDouble(s.nextLine());
+                    realizarOperacoes(numeroDaAgenciaEnviar, numeroDaContaEnviar, numeroDaAgenciaReceber,
+                            numeroDaContaReceber, quantia);
+                    break;
+                case 3:
+                    exibirSaldo();
+                    break;
+                case 4:
+                    System.out.println("SAIU");
+                    s.close();
+                    return;
+                default:
+                    System.out.println("Opçao invalida");
+                    break;
+            }
         }
     }
 }
